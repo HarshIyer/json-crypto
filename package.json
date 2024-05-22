@@ -1,0 +1,35 @@
+{
+  "name": "@harshiyer/json-crypto",
+  "version": "1.0.1",
+  "description": "A npm package to convert JSON payload into AES encoded Base64 Strings. ",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarshIyer/json-crypto.git"
+  },
+  "keywords": [
+    "json",
+    "crypto",
+    "AES",
+    "pkbdf2",
+    "Base64"
+  ],
+  "author": "harshiyer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HarshIyer/json-crypto/issues"
+  },
+  "homepage": "https://github.com/HarshIyer/json-crypto#readme",
+  "devDependencies": {
+    "@types/node": "^20.12.12"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  }
+}
