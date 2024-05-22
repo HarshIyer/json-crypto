@@ -1,7 +1,7 @@
 {
   "name": "@harshiyer/json-crypto",
-  "version": "1.0.1",
-  "description": "A npm package to convert JSON payload into AES encoded Base64 Strings. ",
+  "version": "1.0.2",
+  "description": "A npm package to convert JSON payload into AES encoded Base64 Strings and vice versa. ",
   "main": "index.js",
   "directories": {
     "test": "test"

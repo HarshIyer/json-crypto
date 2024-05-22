@@ -16,10 +16,19 @@
 - The original password hashed using SHA256
   - Accessible by convertToAES.sha256key
 
-The encrypted AES string can be later decoded using 
-``` javascript
-var CryptoJS = require("crypto-js");
+The encrypted AES string can be later decoded using the function convertFromAES(aesString, derivedKey)
 
-var bytes = CryptoJS.AES.decrypt(aesString, derivedKey);
-var originalText = atob(bytes.toString(CryptoJS.enc.Utf8));
+### Sample:
+``` javascript
+const {convertToAES, convertFromAES} = require('@harshiyer/json-crypto');
+const encodedJSON = convertToAES('testpayload', 'testpassword')
+console.log(encodedJSON) // Returns derivedKey, salt, aesString, sha256key
+
+Now to reverse it, 
+const aesString = encodedJSON.aesString;
+const derivedKey = encodedJSON.derivedKey;
+
+const retrievedText = convertFromAES(aesString, derivedKey);
+console.log(retrievedText) // Returns the original String which was encoded i.e "testpayload"
+
 ```
