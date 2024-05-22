@@ -2,9 +2,9 @@ var crypto = require("crypto");
 var CryptoJS = require("crypto-js");
 var sha256 = require("crypto-js/sha256");
 
-function convertToAES(inputString, key) {
-  
-  const base64 = btoa(inputString);
+function convertToAES(inputJSON, key) {
+  const minifiedJSON = JSON.stringify(inputJSON);
+  const base64 = btoa(minifiedJSON);
   const salt = new crypto.randomBytes(20).toString("hex");
 
   const derivedKey = crypto
@@ -24,7 +24,7 @@ function convertToAES(inputString, key) {
 function convertFromAES(aesString, derivedKey) {
   const bytes = CryptoJS.AES.decrypt(aesString, derivedKey);
   const originalText = atob(bytes.toString(CryptoJS.enc.Utf8));
-  return originalText;
+  return JSON.parse(originalText);
 }
 
 module.exports = {
