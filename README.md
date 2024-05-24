@@ -13,9 +13,8 @@ console.log(encodedJSON) // Returns derivedKey, salt, aesString, sha256key
 
 //Now to reverse it, 
 const aesString = encodedJSON.aesString;
-const derivedKey = encodedJSON.derivedKey;
 
-const retrievedText = convertFromAES(aesString, derivedKey);
+const retrievedText = convertFromAES(aesString, password, salt); //Note: password stands for the original password converted to derivedKey
 console.log(retrievedText) // Returns the original JSON which was encrypted
 
 ```

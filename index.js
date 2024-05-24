@@ -12,6 +12,10 @@ function splitObject(obj) {
   return { keys, values };
 }
 
+function generateDerivedKey(key, salt) {
+  return crypto.pbkdf2Sync(key, salt, 1000, 16, "sha256").toString("hex");
+}
+
 function combineArrays(keys, values) {
   const obj = {};
   if (keys.length !== values.length) {
@@ -34,9 +38,7 @@ function convertToAES(inputJSON, key) {
   const base64 = btoa(minifiedJSON);
   const salt = new crypto.randomBytes(20).toString("hex");
 
-  const derivedKey = crypto
-    .pbkdf2Sync(key, salt, 1000, 16, "sha256")
-    .toString("hex");
+  const derivedKey = generateDerivedKey(key, salt);
 
   const aesString = CryptoJS.AES.encrypt(base64, derivedKey).toString();
   const sha256key = sha256(key).toString();
@@ -48,7 +50,8 @@ function convertToAES(inputJSON, key) {
   };
 }
 
-function convertFromAES(aesString, derivedKey) {
+function convertFromAES(aesString, key, salt) {
+  const derivedKey = generateDerivedKey(key, salt);
   const bytes = CryptoJS.AES.decrypt(aesString, derivedKey);
   const originalText = atob(bytes.toString(CryptoJS.enc.Utf8));
   return combineArrays(
