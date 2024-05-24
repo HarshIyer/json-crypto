@@ -1,4 +1,4 @@
-import { convertToAES, convertFromAES } from "../package/index";
+import { convertToAES, convertFromAES } from "../index.js";
 import { describe, it, expect } from "vitest";
 
 describe("Test JSON-Crypto", () => {
